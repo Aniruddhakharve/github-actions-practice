@@ -13,3 +13,18 @@ jobs:
 
       - name: Say Hello
         run: echo "Hello from GitHub Actions!"
+
+      - name: show date and time
+        run: date
+
+      - name: show branch
+        run: echo " BRANCH ${{ github.ref_name}}"
+
+      - name: List repository files
+        run: ls -la
+
+      - name: Show runer OS
+        run: echo " This is runner os ${{runner.os }}"
+        run: echo " THIS is OPERATING SYSTEM $RUNNER_OS"
+
+
