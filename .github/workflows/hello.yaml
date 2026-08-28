@@ -23,8 +23,10 @@ jobs:
       - name: List repository files
         run: ls -la
 
-      - name: Show runer OS
+      - name: Show runner OS
         run: echo " This is runner os ${{runner.os }}"
+
+      - name: THIS SHOWS OS
         run: echo " THIS is OPERATING SYSTEM $RUNNER_OS"
 
 
