@@ -29,7 +29,5 @@ jobs:
       - name: THIS SHOWS OS
         run: echo " THIS is OPERATING SYSTEM $RUNNER_OS"
 
-      - name: Intentional Failure
-        run: exit 1
 
 
