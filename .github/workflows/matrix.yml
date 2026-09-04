@@ -26,7 +26,3 @@ jobs:
 
       - name: show python version
         run: python --version
-
-      - name: Intentional failure
-        if: matrix.python-version == '3.11'
-        run: exit 1
