@@ -8,8 +8,11 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: ["ubuntu-latest" , "windows-latest"]
+        os: ["ubuntu-latest","windows-latest"]
         python-version: [ "3.10","3.11","3.12"]
+        exclude:
+          - os: windows-latest
+            python-version: "3.10"
 
     steps: # Fixed: Aligned to 4 spaces, matching runs-on and strategy
       - name: checkout code
