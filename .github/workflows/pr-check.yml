@@ -2,7 +2,7 @@ name: PR Check
 
 on:
   pull_request:
-    branches: 
+    branches:
       - main
     types:
       - opened
@@ -11,9 +11,10 @@ on:
 jobs:
   pr-check:
     runs-on: ubuntu-latest
-    steps:
-      - name: git checkout
-        uses: actions/checkout@v7
 
-      - name: PR Branch Pull
-        run:  echo "PR check running for branch: ${{ github.head_ref }}"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: PR branch
+        run: echo "PR check running for branch: ${{ github.head_ref }}"
