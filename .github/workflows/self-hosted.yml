@@ -15,7 +15,7 @@ jobs:
         run: pwd
 
       - name: Create test file
-        run: echo "Created by GitHub Actions self-hosted runner" > runner-test.txt
+        run: echo "Created by GitHub Actions self-hosted runner" >> /home/ubuntu/runner-test.txt
 
       - name: Verify file
         run: ls -l runner-test.txt
