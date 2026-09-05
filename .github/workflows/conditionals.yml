@@ -25,6 +25,7 @@ jobs:
         run: echo "The previous step failed, so this step is running."
 
       - name: Continue on error
+        if: always()
         continue-on-error: true
         run: |
           echo "This step will fail, but the job will continue."
