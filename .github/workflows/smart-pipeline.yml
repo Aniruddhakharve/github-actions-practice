@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Show pipeline summary
         run: |
-          if [ ${{github.ref}} == 'refs/heads/main']; then
+          if [ ${{github.ref}} == 'refs/heads/main' ]; then
             echo "This is a main branch push."
           else
             echo  "This is a feature branch push."
