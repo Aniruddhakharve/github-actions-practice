@@ -13,6 +13,21 @@ jobs:
           echo "Hostname: $(hostname)"
           echo "USER : $USER"
           echo  "USER: $(whoami)"
+
+      - name: Check pre-installed tools
+        run: |
+           echo "Docker:"
+           docker --version
+
+           echo "Python:"
+           python --version
+
+          echo "Node:"
+          node --version
+
+          echo "Git:"
+          git --version
+
   windows:
     runs-on: windows-latest
     steps:
