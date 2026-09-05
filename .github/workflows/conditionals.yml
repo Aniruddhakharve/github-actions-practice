@@ -32,6 +32,7 @@ jobs:
           exit 1
 
       - name: After continue-on-error
+        if: always()
         run: echo "The workflow continued after the previous failure."
 
   push-only-job:
