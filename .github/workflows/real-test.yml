@@ -13,5 +13,3 @@ jobs:
             - name: run system check script
               run: |
                  bash ./system-check.sh
-                 echo "All system checks passed successfully."
-                 exit 1
