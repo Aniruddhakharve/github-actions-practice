@@ -1,0 +1,21 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+    docker-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v7
+
+            - name: Build Docker image
+              run: | 
+                docker build \
+                -t ${{ secrets.DOCKER_USERNAME }}/day45-docker-cicd:latest  \
+                -t ${{ secrets.DOCKER_USERNAME }}/day45-docker-cicd:${{ github.sha }} \
+                .
