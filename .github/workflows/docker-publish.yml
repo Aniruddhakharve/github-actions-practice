@@ -27,6 +27,7 @@ jobs:
                 .
 
             - name: push Docker image
+              if: github.ref == 'refs/heads/main'
               run: |
                 docker push ${{ secrets.DOCKER_USERNAME }}/day45-docker-cicd:latest
                 docker push ${{ secrets.DOCKER_USERNAME }}/day45-docker-cicd:${GITHUB_SHA::7}
