@@ -52,4 +52,4 @@ jobs:
               run: |
                 VERSION="v1.0-${GITHUB_SHA::7}"
                 echo "Build version: $VERSION"
-                echo " build_version=$VERSION" >> "$GITHUB_OUTPUT"
+                echo "build_version=$VERSION" >> "$GITHUB_OUTPUT"

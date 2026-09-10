@@ -21,5 +21,3 @@ jobs:
             - name: show build version
               run: |
                 echo "Build version from resuable workflow: ${{needs.build.outputs.build_version}}"
-
-        
