@@ -7,25 +7,44 @@ on:
     
 jobs:
     file-size-check:
-        runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
 
-        steps:
-            - name: Git checkout code
-              uses: actions/checkout@v7
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
 
-            - name: Check file sizes
-              run: |
-                echo "Checking for files larger than 1 MB..."
+        - name: Check PR file sizes
+          run: |
+            echo "Checking files changed in this PR..."
 
-                LARGE_FILES=$(find . -type f -not -path './.git/*' -size +1M)
+            git diff --name-only \
+                "${{ github.event.pull_request.base.sha }}" \
+                "${{ github.event.pull_request.head.sha }}" > changed-files.txt
 
-                if [ -n "$LARGE_FILES"]; then
-                   echo "The following files are larger than 1 MB:"
-                   echo "$LARGE_FILES"
-                   exit 1
-                else
-                   echo "All files are within the 1 MB limit."
+            echo "Changed files:"
+            cat changed-files.txt
+
+            LARGE_FILE_FOUND=false
+
+            while IFS= read -r file; do
+                if [ -f "$file" ]; then
+                SIZE=$(stat -c%s "$file")
+
+                if [ "$SIZE" -gt 1048576 ]; then
+                    echo "File larger than 1 MB: $file ($(du -h "$file" | cut -f1))"
+                    LARGE_FILE_FOUND=true
                 fi
+                fi
+            done < changed-files.txt
+
+            if [ "$LARGE_FILE_FOUND" = true ]; then
+                echo "PR contains files larger than 1 MB."
+                exit 1
+            else
+                echo "All changed files are within the 1 MB limit."
+            fi
 
     branch-name-check:
         runs-on: ubuntu-latest
