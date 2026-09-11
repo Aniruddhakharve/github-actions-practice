@@ -11,7 +11,7 @@ jobs:
         steps:
             - name: Show external event
               run: |
-                echo "External event received.
+                echo "External event received."
                 echo "Event type: ${{github.event.action}}"
                 echo "Deployment environment: ${{ github.event.client_payload.environment }}"
 
